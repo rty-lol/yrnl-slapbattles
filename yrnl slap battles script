@@ -247,9 +247,10 @@ Home:AddButton({
 })
 local InfoServer = Home:AddSection({Name = "Info"})
 CanYouFps = Home:AddLabel("Your Fps [ "..math.floor(workspace:GetRealPhysicsFPS()).." ]")
-CheckSlap = Home:AddLabel("Check Slap [ "..game.Players.LocalPlayer.leaderstats.Slaps.Value.." ]")
-CheckHealth = Home:AddLabel("Check Health [ "..game.Players.LocalPlayer.Character.Humanoid.Health.." ]")
-CheckGlove = Home:AddLabel("Check Glove [ "..game.Players.LocalPlayer.leaderstats.Glove.Value.." ]")
+CheckSlap = Home:AddLabel("Check Slaps [ "..game.Players.LocalPlayer.leaderstats.Slaps.Value.." ]")
+CheckHealth = Home:AddLabel("your Health [ "..game.Players.LocalPlayer.Character.Humanoid.Health.." ]")
+CheckGlove = Home:AddLabel("your Glove [ "..game.Players.LocalPlayer.leaderstats.Glove.Value.." ]")
+CheckCode = Home:AddLabel("Keypad Code [ "..tostring((#game.Players:GetPlayers()) * 25 + 1100 - 7).." ]")
 Home:AddParagraph("Game's ID [ "..game.PlaceId.." ]","Server ID [ "..game.JobId.." ]")
 
 AutoSetInfo = Home:AddToggle({
@@ -259,9 +260,10 @@ AutoSetInfo = Home:AddToggle({
 _G.AutoSetInfo = Value
 while _G.AutoSetInfo do
 CanYouFps:Set("Your Fps [ "..math.floor(workspace:GetRealPhysicsFPS()).." ]")
-CheckSlap:Set("Check Slap [ "..game.Players.LocalPlayer.leaderstats.Slaps.Value.." ]")
-CheckHealth:Set("Check Health [ "..game.Players.LocalPlayer.Character.Humanoid.Health.." ]")
-CheckGlove:Set("Check Glove [ "..game.Players.LocalPlayer.leaderstats.Glove.Value.." ]")
+CheckSlap:Set("Check Slaps [ "..game.Players.LocalPlayer.leaderstats.Slaps.Value.." ]")
+CheckHealth:Set("your Health [ "..game.Players.LocalPlayer.Character.Humanoid.Health.." ]")
+CheckGlove:Set("your Glove [ "..game.Players.LocalPlayer.leaderstats.Glove.Value.." ]")
+CheckCode:Set("Keypad Code [ "..tostring((#game.Players:GetPlayers()) * 25 + 1100 - 7).." ]")
 task.wait()
 end
 	end    
@@ -724,101 +726,6 @@ AutoFarmBrick:Set(false)
 end
 	end    
 })
-Badge:AddDropdown({
-	Name = "Join Maze Elude",
-	Default = "Auto Keypad",
-	Options = {"Teleport","Auto Keypad"},
-	Callback = function(Value)
-_G.SelectMaze = Value
-	end    
-})
-
-Badge:AddButton({
-	Name = "Get Counter + Elude",
-	Callback = function()
-if _G.SelectMaze == "Teleport" then
-local teleportFunc = queueonteleport or queue_on_teleport
-if teleportFunc then
-    teleportFunc([[
-        if not game:IsLoaded() then
-            game.Loaded:Wait()
-        end
-        repeat wait() until game.Players.LocalPlayer
-        wait(3)
-Time = 121
-fireclickdetector(game.Workspace.CounterLever.ClickDetector)
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(0,100,0)
-wait(0.2)
-game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = true
-for i = 1,Time do
-Time = Time - 1
-game:GetService("StarterGui"):SetCore("SendNotification",{Title = "Error",Text = "You wait time [ "..Time.." ] receive.",Icon = "rbxassetid://7733658504",Duration = 1})
-wait(1)
-end
-game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = false
-wait(0.5)
-firetouchinterest(game:GetService("Players").LocalPlayer.Character:FindFirstChild("HumanoidRootPart"), game.Workspace.Ruins.Elude.Glove, 0)
-firetouchinterest(game:GetService("Players").LocalPlayer.Character:FindFirstChild("HumanoidRootPart"), game.Workspace.Ruins.Elude.Glove, 1)
-for i,v in pairs(workspace.Maze:GetDescendants()) do
-if v:IsA("ClickDetector") then
-fireclickdetector(v)
-end
-end
-    ]])
-end
-game:GetService("TeleportService"):Teleport(11828384869)
-elseif _G.SelectMaze == "Auto Keypad" then
-if not workspace:FindFirstChild("Keypad") then
-OrionLib:MakeNotification({Name = "Error",Content = "Server don't have keypad, auto start Serverhop",Image = "rbxassetid://7733658504",Time = 5})
-	for _, server in ipairs(game.HttpService:JSONDecode(game:HttpGetAsync("https://games.roblox.com/v1/games/" .. game.PlaceId .. "/servers/Public?sortOrder=Asc&limit=100")).data) do
-    	if server.playing < server.maxPlayers and server.JobId ~= game.JobId then
-        	game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, server.id)
-    	end
-	end
-else
-local teleportFunc = queueonteleport or queue_on_teleport
-if teleportFunc then
-    teleportFunc([[
-        if not game:IsLoaded() then
-            game.Loaded:Wait()
-        end
-        repeat wait() until game.Players.LocalPlayer
-        wait(3)
-Time = 121
-fireclickdetector(game.Workspace.CounterLever.ClickDetector)
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(0,100,0)
-wait(0.2)
-game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = true
-for i = 1,Time do
-Time = Time - 1
-game:GetService("StarterGui"):SetCore("SendNotification",{Title = "Error",Text = "You wait time [ "..Time.." ] receive.",Icon = "rbxassetid://7733658504",Duration = 1})
-wait(1)
-end
-firetouchinterest(game:GetService("Players").LocalPlayer.Character:FindFirstChild("HumanoidRootPart"), game.Workspace.Ruins.Elude.Glove, 0)
-firetouchinterest(game:GetService("Players").LocalPlayer.Character:FindFirstChild("HumanoidRootPart"), game.Workspace.Ruins.Elude.Glove, 1)
-for i,v in pairs(workspace.Maze:GetDescendants()) do
-if v:IsA("ClickDetector") then
-fireclickdetector(v)
-end
-end
-    ]])
-end
-OrionLib:MakeNotification({Name = "Error",Content = "Server in have spawn keypad, auto start keypad",Image = "rbxassetid://7733658504",Time = 5})
-game.Workspace.CurrentCamera.CameraSubject = workspace.Keypad.Buttons.Enter
-fireclickdetector(workspace:WaitForChild("Keypad").Buttons:FindFirstChild("Reset").ClickDetector)
-local digits = tostring((#game.Players:GetPlayers()) * 25 + 1100 - 7)
-for i = 1, #digits do
-task.wait(0.8)
-local digit = digits:sub(i, i)
-fireclickdetector(workspace:WaitForChild("Keypad").Buttons:FindFirstChild(digit).ClickDetector)
-end
-task.wait(0.5)
-fireclickdetector(workspace:WaitForChild("Keypad").Buttons:FindFirstChild("Enter").ClickDetector)
-end
-end
-  	end    
-})
-
 Badge:AddButton({
 	Name = "Get Glove [Redacted]",
 	Callback = function()
