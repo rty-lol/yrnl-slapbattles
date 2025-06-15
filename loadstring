@@ -1,0 +1,1 @@
+loadstring(game:HttpGet(("https://raw.githubusercontent.com/rty-lol/yrnl-slapbattles/refs/heads/main/yrnl%20slapbattles%20script")))()
