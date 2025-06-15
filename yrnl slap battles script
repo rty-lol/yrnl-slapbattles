@@ -1531,8 +1531,6 @@ end
 	end    
 })
 
-local Combat = fight:AddSection({Name = "Fight"})
-
 fight:AddToggle({
 	Name = "Damage Boss",
 	Default = false,
