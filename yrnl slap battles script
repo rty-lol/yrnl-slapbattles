@@ -3261,4 +3261,62 @@ end
 end
 	end    
 })
+elseif game.PlaceId == 11828384869 then
+loadstring(game:HttpGet(("https://raw.githubusercontent.com/rty-lol/yrnl-slap-battles-script/refs/heads/main/%E5%B7%B4%E6%8E%8C%E6%94%B9%E5%90%8D%E8%85%B3%E6%9C%AC(%E5%83%85%E8%87%AA%E5%B7%B1)")))()
+loadstring(game:HttpGet(("https://raw.githubusercontent.com/rty-lol/yrnl-slapbattles/refs/heads/main/safe%20zone")))()
+local OrionLib = loadstring(game:HttpGet(("https://raw.githubusercontent.com/Giangplay/Script/main/Orion_Library_PE_V2.lua")))()
+local Window = OrionLib:MakeWindow({IntroText = (GameName),IntroIcon = "rbxassetid://15315284749",Name = ("🌊yrnl | "..GameName.." | ".. identifyexecutor()),IntroToggleIcon = "rbxassetid://7734091286", HidePremium = false, SaveConfig = false, IntroEnabled = true, ConfigFolder = "yrnl"})
+OrionLib:MakeNotification({
+	Name = "script loaded!",
+	Content = "made by yrnl",
+	Image = "IntroIcon = rbxassetid://15315284749",
+	Time = 5
+})
+local Home = Window:MakeTab({
+	Name = "Main",
+	PremiumOnly = false
+})
+local tp = Window:MakeTab({
+	Name = "Teleport"
+})
+Home:AddLabel("Welcome!")
+Home:AddLabel("Made by yrnl!")
+Home:AddButton({
+	Name = "Destroy UI",
+	Callback = function()
+    OrionLib:Destroy()
+	end
+})
+local InfoServer = Home:AddSection({Name = "Info"})
+CanYouFps = Home:AddLabel("Your Fps [ "..math.floor(workspace:GetRealPhysicsFPS()).." ]")
+CheckHealth = Home:AddLabel("your Health [ "..game.Players.LocalPlayer.Character.Humanoid.Health.." ]")
+Home:AddParagraph("Game's ID [ "..game.PlaceId.." ]","Server ID [ "..game.JobId.." ]")
+
+AutoSetInfo = Home:AddToggle({
+	Name = "Auto Set Info",
+	Default = false,
+	Callback = function(Value)
+_G.AutoSetInfo = Value
+while _G.AutoSetInfo do
+CanYouFps:Set("Your Fps [ "..math.floor(workspace:GetRealPhysicsFPS()).." ]")
+CheckHealth:Set("your Health [ "..game.Players.LocalPlayer.Character.Humanoid.Health.." ]")
+task.wait()
+end
+	end    
+})
+tp:AddButton({
+	Name = "get elude item",
+	Default = "",
+	Callback = function(Value)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(218.37355, 5.89999914, 83.3790283, -0.379799336, 8.75508999e-09, 0.925068915, 1.58111177e-08, 1, -2.97279334e-09, -0.925068915, 1.34973082e-08, -0.379799336)
+wait(0.2)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(84.2933502, 5.89999914, -202.058472, 0.739600241, 3.214112e-08, 0.67304641, -2.55156927e-08, 1, -1.97158858e-08, -0.67304641, -2.59137112e-09, 0.739600241)
+wait(0.2)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-192.973022, 5.89999914, -129.175858, 0.561953485, 5.8951537e-09, 0.827168822, 5.11573894e-09, 1, -1.06023839e-08, -0.827168822, 1.0189626e-08, 0.561953485)
+wait(0.2)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(104.826073, 16.1919804, 194.889542, 0.143912151, -0.179024011, 0.973262429, 4.63154151e-07, 0.983500183, 0.1809071, -0.989590466, -0.0260342788, 0.141537711)
+wait(0.5)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-502.209564, 21.3112621, -177.817368, 0.999954581, -0.00115420518, 0.00945801847, -3.31995054e-09, 0.992635906, 0.121136248, -0.00952818431, -0.12113075, 0.992590845)
+end
+})
 end
